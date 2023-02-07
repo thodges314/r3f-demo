@@ -1,7 +1,7 @@
 import ThreePointViz from "./ThreePointViz/ThreePointViz";
 import "./styles.css";
 
-const data = new Array(1000).fill(0).map((_d, id) => ({
+const data = new Array(100000).fill(0).map((_d, id) => ({
   id,
 }));
 
