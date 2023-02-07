@@ -4,20 +4,17 @@ import { useLayout } from "./layouts";
 
 const scratchObject3D = new Object3D();
 
-const InstancedPoints = ({ data }) => {
+const InstancedPoints = ({ data, layout }) => {
   const meshRef = useRef();
   const numPoints = data.length;
 
-  useLayout({ data, layout: "spiral" });
+  useLayout({ data, layout });
 
   useEffect(() => {
     const mesh = meshRef.current;
 
     for (let i = 0; i < numPoints; i++) {
       const { x, y, z } = data[i];
-      // const x = (i % 30) * 1.05;
-      // const y = Math.floor(i / 30) * 1.05;
-      // const z = 0;
 
       scratchObject3D.position.set(x, y, z);
       scratchObject3D.rotation.set(0.5 * Math.PI, 0, 0);
@@ -26,7 +23,7 @@ const InstancedPoints = ({ data }) => {
     }
 
     mesh.instanceMatrix.needsUpdate = true;
-  }, [numPoints]);
+  }, [numPoints, data, layout]);
 
   return (
     <instancedMesh
